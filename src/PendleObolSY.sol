@@ -23,6 +23,8 @@ import "./interfaces/IRstObol.sol";
 /// the number of underlying OBOL tokens they have a claim to grows over time. As such, 1 stOBOL
 /// will be worth more and more OBOL over time.
 contract PendleObolSY is SYBase {
+    using PMath for uint256;
+
     address public immutable obol;
     address public immutable stObol;
     address public immutable rstObol;
@@ -36,7 +38,6 @@ contract PendleObolSY is SYBase {
         rstObol = IStObol(_stObol).LST();
 
         _safeApproveInf(obol, stObol);
-        _safeApproveInf(stObol, rstObol);
 
         shareScaleFactor = IRstObol(rstObol).SHARE_SCALE_FACTOR();
     }
@@ -50,7 +51,6 @@ contract PendleObolSY is SYBase {
      *
      * The underlying yield token is stObol. If the base token deposited is obol, the function wraps
      * it into stObol.
-     * If the base token deposited is rstObol, the function unwraps it into stObol.
      *
      * The exchange rate of stObol to shares is 1:1
      */
@@ -64,17 +64,13 @@ contract PendleObolSY is SYBase {
             amountSharesOut = amountDeposited;
         } else if (tokenIn == obol) {
             amountSharesOut = IStObol(stObol).stake(amountDeposited);
-        } else {
-            amountSharesOut = IRstObol(rstObol).unstake(amountDeposited);
         }
     }
 
     /**
      * @dev See {SYBase-_redeem}
      *
-     * The shares are redeemed into the same amount of stObol. If `tokenOut` is rstObol, the function also
-     * wraps said amount of stObol into rstObol for redemption.
-     * Cannot redeem into obol because of *potential* latency of the unstaking process.
+     * The shares are redeemed into the same amount of stObol.
      */
     function _redeem(address receiver, address tokenOut, uint256 amountSharesToRedeem)
         internal
@@ -82,12 +78,8 @@ contract PendleObolSY is SYBase {
         override
         returns (uint256 amountTokenOut)
     {
-        if (tokenOut == stObol) {
-            amountTokenOut = amountSharesToRedeem;
-        } else if (tokenOut == rstObol) {
-            amountTokenOut = IRstObol(rstObol).stake(amountSharesToRedeem);
-        }
         _transferOut(tokenOut, receiver, amountTokenOut);
+        return amountSharesToRedeem;
     }
 
     /**
@@ -104,10 +96,10 @@ contract PendleObolSY is SYBase {
         override
         returns (uint256 amountSharesOut)
     {
-        if (tokenIn == stObol || tokenIn == obol) {
-            amountSharesOut = amountTokenToDeposit;
-        } else if (tokenIn == rstObol) {
-            amountSharesOut = IRstObol(rstObol).sharesForStake(amountTokenToDeposit) / shareScaleFactor;
+        if (tokenIn == obol) {
+            return amountTokenToDeposit.divDown(exchangeRate());
+        } else {
+            return amountTokenToDeposit;
         }
     }
 
@@ -117,32 +109,26 @@ contract PendleObolSY is SYBase {
         override
         returns (uint256 amountTokenOut)
     {
-        if (tokenOut == stObol) {
-            amountTokenOut = amountSharesToRedeem;
-        } else if (tokenOut == rstObol) {
-            amountTokenOut = IRstObol(rstObol).stakeForShares(amountSharesToRedeem);
-        }
+        return amountSharesToRedeem;
     }
 
     function getTokensIn() public view virtual override returns (address[] memory res) {
-        res = new address[](3);
+        res = new address[](2);
         res[0] = obol;
         res[1] = stObol;
-        res[2] = rstObol;
     }
 
     function getTokensOut() public view virtual override returns (address[] memory res) {
-        res = new address[](2);
+        res = new address[](1);
         res[0] = stObol;
-        res[1] = rstObol;
     }
 
     function isValidTokenIn(address token) public view virtual override returns (bool) {
-        return token == obol || token == stObol || token == rstObol;
+        return token == obol || token == stObol;
     }
 
     function isValidTokenOut(address token) public view virtual override returns (bool) {
-        return token == stObol || token == rstObol;
+        return token == stObol;
     }
 
     function assetInfo() external view returns (AssetType assetType, address assetAddress, uint8 assetDecimals) {
