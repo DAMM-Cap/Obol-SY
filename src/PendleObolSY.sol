@@ -116,7 +116,6 @@ contract PendleObolSY is SYBase {
         res = new address[](2);
         res[0] = obol;
         res[1] = stObol;
-        res[2] = rstObol;
     }
 
     function getTokensOut() public view virtual override returns (address[] memory res) {
