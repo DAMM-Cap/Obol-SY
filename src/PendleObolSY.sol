@@ -78,7 +78,7 @@ contract PendleObolSY is SYBase {
         override
         returns (uint256 amountTokenOut)
     {
-        _transferOut(tokenOut, receiver, amountTokenOut);
+        _transferOut(tokenOut, receiver, amountSharesToRedeem);
         return amountSharesToRedeem;
     }
 
