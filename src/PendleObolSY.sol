@@ -78,16 +78,16 @@ contract PendleObolSY is SYBase {
         override
         returns (uint256 amountTokenOut)
     {
-        _transferOut(tokenOut, receiver, amountTokenOut);
+        _transferOut(tokenOut, receiver, amountSharesToRedeem);
         return amountSharesToRedeem;
     }
 
     /**
      * @notice Calculates and updates the exchange rate of shares to underlying asset token
-     * @dev It is the exchange rate of stObol to rstObol
+     * @dev It is the exchange rate of Obol to stObol
      */
     function exchangeRate() public view virtual override returns (uint256) {
-        return IRstObol(rstObol).sharesForStake(1 ether) / shareScaleFactor;
+        return IRstObol(rstObol).stakeForShares(1 ether * shareScaleFactor);
     }
 
     function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
