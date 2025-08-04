@@ -1,66 +1,44 @@
-## Foundry
+# PendleObolSY
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A Standardized Yield (SY) contract for integrating stOBOL and OBOL tokens with the Pendle protocol. This contract enables seamless interaction between The Obol Collective's liquid staking tokens and Pendle's yield-trading infrastructure.
 
-Foundry consists of:
+## Development
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This project uses Foundry for development.
 
-## Documentation
+### Prerequisites
 
-https://book.getfoundry.sh/
-
-## Usage
+- [Foundry](https://getfoundry.sh/)
+- Solidity ^0.8.0
 
 ### Build
 
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
+```bash
+forge build
 ```
 
 ### Format
 
-```shell
-$ forge fmt
+```bash
+forge fmt
 ```
 
-### Gas Snapshots
+## Security
 
-```shell
-$ forge snapshot
-```
+### Audit
 
-### Anvil
+This contract has been audited by **WatchPug** to ensure security and reliability.
 
-```shell
-$ anvil
-```
+📋 **[View Audit Report](./audits/Obol-SY_Audit_Report_by_WatchPug.pdf)**
 
-### Deploy
+### Authorization
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+This contract was authorized and developed by **[DAMM Capital](https://dammcap.finance)**.
 
-### Cast
+## License
 
-```shell
-$ cast <subcommand>
-```
+This project is licensed under the GPL-3.0-or-later License.
 
-### Help
+## Support
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+For questions and support, please reach out to the DAMM Capital team or create an issue in this repository.
