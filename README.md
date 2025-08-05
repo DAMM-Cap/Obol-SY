@@ -23,6 +23,14 @@ forge build
 forge fmt
 ```
 
+### Deploy
+
+> Include `DEPLOYER_PK` in `.env` file at root before deployment.
+
+```bash
+forge script script/DeployPendleObolSY.s.sol --rpc-url <your_rpc_url>
+```
+
 ## Security
 
 ### Audit
