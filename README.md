@@ -39,9 +39,9 @@ This contract has been audited by **WatchPug** to ensure security and reliabilit
 
 📋 **[View Audit Report](./audits/Obol-SY_Audit_Report_by_WatchPug.pdf)**
 
-### Authorization
+### Authors
 
-This contract was authorized and developed by **[DAMM Capital](https://dammcap.finance)**.
+This contract was developed by **[DAMM Capital](https://dammcap.finance)**.
 
 ## License
 
