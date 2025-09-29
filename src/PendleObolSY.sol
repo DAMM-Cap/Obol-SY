@@ -11,7 +11,6 @@ contract PendleObolSY is SYBase {
     using PMath for uint256;
 
     address public immutable obol;
-    address public immutable stObol;
     address public immutable rstObol;
     address public immutable wstObol;
     uint256 public immutable shareScaleFactor;
@@ -21,7 +20,6 @@ contract PendleObolSY is SYBase {
     {
         obol = _obol;
         wstObol = _wstObol;
-        stObol = IWstObol(_wstObol).FIXED_LST();
         rstObol = IWstObol(_wstObol).LST();
         shareScaleFactor = IRstObol(rstObol).SHARE_SCALE_FACTOR();
 
@@ -36,8 +34,6 @@ contract PendleObolSY is SYBase {
     /**
      * @dev See {SYBase-_deposit}
      *
-     * The underlying yield token is stObol. If the base token deposited is obol, the function wraps
-     * it into stObol.
      *
      * The exchange rate of stObol to shares is 1:1
      */
@@ -57,7 +53,7 @@ contract PendleObolSY is SYBase {
     /**
      * @dev See {SYBase-_redeem}
      *
-     * The shares are redeemed into the same amount of stObol.
+     *
      */
     function _redeem(address receiver, address tokenOut, uint256 amountSharesToRedeem)
         internal
