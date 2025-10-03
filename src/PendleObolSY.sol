@@ -67,10 +67,10 @@ contract PendleObolSY is SYBase {
 
     /**
      * @notice Calculates and updates the exchange rate of shares to underlying asset token
-     *
+     * @dev this is the exchange rate of wstObol to stObol
      */
     function exchangeRate() public view virtual override returns (uint256) {
-        return IWstObol(wstObol).previewWrapUnderlying(1 ether * shareScaleFactor);
+        return IWstObol(wstObol).previewUnwrapToFixed(1 ether * shareScaleFactor);
     }
 
     function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
