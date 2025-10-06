@@ -70,7 +70,7 @@ contract PendleObolSY is SYBase {
      * @dev this is the exchange rate of wstObol to stObol
      */
     function exchangeRate() public view virtual override returns (uint256) {
-        return IWstObol(wstObol).previewUnwrapToFixed(1 ether * shareScaleFactor);
+        return IWstObol(wstObol).previewUnwrapToFixed(1 ether);
     }
 
     function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
