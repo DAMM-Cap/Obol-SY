@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.0;
 
-import "@pendle/core/StandardizedYield/SYBase.sol";
+import "@pendle/core/StandardizedYield/v2/SYBaseV2.sol";
 import "./interfaces/IRstObol.sol";
 import "./interfaces/IWstObol.sol";
 
 /// @title PendleObolSY
 /// @author [DAMM Capital](https://dammcap.finance)
-contract PendleObolSY is SYBase {
+contract PendleObolSY is SYBaseV2 {
     using PMath for uint256;
 
     address public immutable obol;
@@ -16,7 +16,7 @@ contract PendleObolSY is SYBase {
     uint256 public immutable shareScaleFactor;
 
     constructor(string memory _name, string memory _symbol, address _obol, address _wstObol)
-        SYBase(_name, _symbol, _wstObol)
+        SYBaseV2(_name, _symbol, _wstObol)
     {
         obol = _obol;
         wstObol = _wstObol;
