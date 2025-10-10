@@ -9,9 +9,14 @@ remappings = [
     "@forge-std/=lib/forge-std/src/",
     "@src/=src/",
     "@test/=test/",
+    "pendle-sy-tests/=lib/pendle-sy-tests/test",
+    "pendle-sy/=lib/pendle-sy-tests/lib/pendle-sy/contracts/",
 
     #deps
     "@pendle/=lib/Pendle-SY-Public/contracts/",
     "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
     "@openzeppelin/contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
 ]
+
+[rpc_endpoints]
+ethereum = "${ETHEREUM_RPC_URL}"

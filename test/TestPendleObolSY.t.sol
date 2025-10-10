@@ -1,4 +1,4 @@
-import {SYTest} from "./common/SYTest.t.sol";
+import {SYTest} from "pendle-sy-tests/common/SYTest.t.sol";
 import {PendleObolSY} from "./PendleObolSY.flat.sol";
 import {IStandardizedYield} from "pendle-sy/interfaces/IStandardizedYield.sol";
 
