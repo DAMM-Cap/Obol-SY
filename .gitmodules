@@ -1,9 +1,6 @@
 [submodule "lib/forge-std"]
 	path = lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "lib/Pendle-SY-Public"]
-	path = lib/Pendle-SY-Public
-	url = https://github.com/pendle-finance/Pendle-SY-Public
 [submodule "lib/openzeppelin-contracts"]
 	path = lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
@@ -13,3 +10,6 @@
 [submodule "lib/pendle-sy-tests"]
 	path = lib/pendle-sy-tests
 	url = https://github.com/pendle-finance/pendle-sy-tests
+[submodule "lib/Pendle-SY-Public"]
+	path = lib/Pendle-SY-Public
+	url = https://github.com/pendle-finance/Pendle-SY-Public

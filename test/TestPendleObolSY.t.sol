@@ -16,7 +16,7 @@ contract TestPendleObolSY is SYTest {
         vm.startPrank(deployer);
 
         // Deploy your SY implementation
-        sy = IStandardizedYield(address(new PendleObolSY("Obol SY", "SY-wstOBOL", OBOL, WST_OBOL)));
+        sy = IStandardizedYield(address(new PendleObolSY("SY Obol Network", "SY-wstOBOL", OBOL, WST_OBOL)));
         // sy = IStandardizedYield(
         //     deployTransparentProxy(logic, deployer, abi.encodeCall(PendleObolSY.initialize, (/* init args */)))
         // );
