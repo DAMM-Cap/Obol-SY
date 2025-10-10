@@ -10,5 +10,8 @@
   },
   "lib/openzeppelin-contracts-upgradeable": {
     "rev": "3d4c0d5741b131c231e558d7a6213392ab3672a5"
+  },
+  "lib/pendle-sy-tests": {
+    "rev": "393d18c910777fe8652f36e4a34282632ca26c29"
   }
 }
