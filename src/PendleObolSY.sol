@@ -32,10 +32,7 @@ contract PendleObolSY is SYBaseV2 {
     //////////////////////////////////////////////////////////////*/
 
     /**
-     * @dev See {SYBase-_deposit}
-     *
-     *
-     * The exchange rate of stObol to shares is 1:1
+     * @dev See {SYBaseV2-_deposit}
      */
     function _deposit(address tokenIn, uint256 amountDeposited)
         internal
@@ -51,9 +48,7 @@ contract PendleObolSY is SYBaseV2 {
     }
 
     /**
-     * @dev See {SYBase-_redeem}
-     *
-     *
+     * @dev See {SYBaseV2-_redeem}
      */
     function _redeem(address receiver, address tokenOut, uint256 amountSharesToRedeem)
         internal
@@ -67,12 +62,15 @@ contract PendleObolSY is SYBaseV2 {
 
     /**
      * @notice Calculates and updates the exchange rate of shares to underlying asset token
-     * @dev this is the exchange rate of wstObol to stObol
+     * @dev this is the exchange rate of wstObol to obol
      */
     function exchangeRate() public view virtual override returns (uint256) {
-        return IWstObol(wstObol).previewUnwrapToFixed(1 ether);
+        return IRstObol(rstObol).stakeForShares(IWstObol(wstObol).previewUnwrapToRebase(1 ether));
     }
 
+    /**
+     * @dev See {SYBaseV2-_previewDeposit}
+     */
     function _previewDeposit(address tokenIn, uint256 amountTokenToDeposit)
         internal
         view
@@ -86,6 +84,9 @@ contract PendleObolSY is SYBaseV2 {
         }
     }
 
+    /**
+     * @dev See {SYBaseV2-_previewRedeem}
+     */
     function _previewRedeem(address tokenOut, uint256 amountSharesToRedeem)
         internal
         view

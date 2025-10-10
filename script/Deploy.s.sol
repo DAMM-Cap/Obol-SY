@@ -14,7 +14,7 @@ contract Deploy is Script {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PK");
         vm.startBroadcast(deployerPrivateKey);
 
-        PendleObolSY pendleObolSY = new PendleObolSY("SY Obol Network", "SY-wstOBOL", OBOL, WST_OBOL);
+        PendleObolSY pendleObolSY = new PendleObolSY("SY Wrapped Staked Obol", "SY-wstOBOL", OBOL, WST_OBOL);
         pendleObolSY.transferOwnership(PENDLE_PAUSE_CONTROLLER, true, false);
 
         vm.stopBroadcast();
