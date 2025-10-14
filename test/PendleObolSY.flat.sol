@@ -986,15 +986,6 @@ interface IERC20Permit {
     function DOMAIN_SEPARATOR() external view returns (bytes32);
 }
 
-// src/interfaces/IRstObol.sol
-
-interface IRstObol {
-    function stakeForShares(uint256 _amount) external view returns (uint256);
-    function stake(uint256 _amount) external returns (uint256);
-    function convertToRebasing(address _account, uint256 _shares) external returns (uint256);
-    function SHARE_SCALE_FACTOR() external view returns (uint256);
-}
-
 // lib/Pendle-SY-Public/contracts/interfaces/IStandardizedYieldExtended.sol
 
 /*
@@ -2607,17 +2598,13 @@ contract PendleObolSY is SYBaseV2 {
     using PMath for uint256;
 
     address public immutable obol;
-    address public immutable rstObol;
     address public immutable wstObol;
-    uint256 public immutable shareScaleFactor;
 
     constructor(string memory _name, string memory _symbol, address _obol, address _wstObol)
         SYBaseV2(_name, _symbol, _wstObol)
     {
         obol = _obol;
         wstObol = _wstObol;
-        rstObol = IWstObol(_wstObol).LST();
-        shareScaleFactor = IRstObol(rstObol).SHARE_SCALE_FACTOR();
 
         /// @dev this will allow obol to be wrapped
         _safeApproveInf(obol, wstObol);

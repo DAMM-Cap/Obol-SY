@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 import "@pendle/core/StandardizedYield/v2/SYBaseV2.sol";
-import "./interfaces/IRstObol.sol";
 import "./interfaces/IWstObol.sol";
 
 /// @title PendleObolSY
@@ -11,17 +10,13 @@ contract PendleObolSY is SYBaseV2 {
     using PMath for uint256;
 
     address public immutable obol;
-    address public immutable rstObol;
     address public immutable wstObol;
-    uint256 public immutable shareScaleFactor;
 
     constructor(string memory _name, string memory _symbol, address _obol, address _wstObol)
         SYBaseV2(_name, _symbol, _wstObol)
     {
         obol = _obol;
         wstObol = _wstObol;
-        rstObol = IWstObol(_wstObol).LST();
-        shareScaleFactor = IRstObol(rstObol).SHARE_SCALE_FACTOR();
 
         /// @dev this will allow obol to be wrapped
         _safeApproveInf(obol, wstObol);
