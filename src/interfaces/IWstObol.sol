@@ -62,7 +62,7 @@ interface IWstObol {
     function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)
         external;
     function previewUnwrapToFixed(uint256 _wrappedAmount) external view returns (uint256);
-    function previewUnwrapToRebase(uint256 _wrappedAmount) external view returns (uint256);
+    function previewUnwrapToRebasing(uint256 _wrappedAmount) external view returns (uint256);
     function previewWrapRebasing(uint256 _stakeTokensToWrap) external view returns (uint256);
     function previewWrapUnderlying(uint256 _stakeTokensToWrap) external view returns (uint256);
     function renounceOwnership() external;
