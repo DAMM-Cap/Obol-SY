@@ -28,7 +28,7 @@ forge fmt
 > Include `DEPLOYER_PK` in `.env` file at root before deployment.
 
 ```bash
-forge script script/DeployPendleObolSY.s.sol --rpc-url <your_rpc_url>
+forge script script/Deploy.s.sol --rpc-url <your_rpc_url>
 ```
 
 ## Security
@@ -37,7 +37,7 @@ forge script script/DeployPendleObolSY.s.sol --rpc-url <your_rpc_url>
 
 This contract has been audited by **WatchPug** to ensure security and reliability.
 
-📋 **[View Audit Report](./audits/Obol-SY_Audit_Report_by_WatchPug.pdf)**
+📋 **[View Audit Report](./audits/PendleObolSY_Update_Audit_Report_by_WatchPug.pdf)**
 
 ### Authors
 
